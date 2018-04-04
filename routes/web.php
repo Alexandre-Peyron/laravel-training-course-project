@@ -79,3 +79,31 @@ Route::get('/articles', function (Request $request) {
 });
 
 
+
+
+Route::get('/articles/{id}', function ($id) {
+    $articles = [
+        [
+            "title" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "year"  => 2018,
+            "tags"  => ["Lorem", "Ipsum"]
+        ],
+        [
+            "title" => "Vivamus id massa ac ex rutrum vestibulum.",
+            "year"  => 2018,
+            "tags"  => ["Lorem", "Massa"]
+        ],
+        [
+            "title" => "Nam purus justo, porttitor vel urna id, blandit aliquam orci.",
+            "year"  => 2017,
+            "tags"  => ["Ipsum", "Massa"]
+        ],
+    ];
+
+
+
+    return view('articles.show')->with('article', $articles[$id]);
+})->where('id', '[0-9]+');
+
+
+
