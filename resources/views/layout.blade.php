@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
 <body>
 
-@yield('content')
+@include('layout-header')
+
+<div class="container">
+    <div class="row">
+        @yield('content')
+    </div>
+</div>
 
 </body>
 </html>
