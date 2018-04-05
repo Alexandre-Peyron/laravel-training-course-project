@@ -11,7 +11,7 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i < 15; $i++) {
+        for($i = 0; $i < 50; $i++) {
 
             // Generate Random Title
             $title = sprintf('%s %s %s %s', str_random(rand(3, 10)), str_random(rand(3, 10)), str_random(rand(3, 10)), str_random(rand(3, 10)));

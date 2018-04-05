@@ -16,7 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         // $articles = DB::table('articles')->latest()->where('is_enabled', '=', 1)->get();
-        $articles = Article::latest()->where('is_enabled', '=', 1)->get();
+        $articles = Article::latest()->where('is_enabled', '=', 1)->paginate(5);
 
         return view('articles.index', compact('articles'));
     }
