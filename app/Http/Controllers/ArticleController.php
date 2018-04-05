@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -13,7 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        // $articles = DB::table('articles')->latest()->where('is_enabled', '=', 1)->get();
+        $articles = Article::latest()->where('is_enabled', '=', 1)->get();
+
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -43,9 +48,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+        return view('articles.show', compact('article'));
     }
 
     /**
