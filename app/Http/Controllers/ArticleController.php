@@ -50,6 +50,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        if (!$article->is_enabled) {
+            return redirect()->route('articles.index');
+        }
+
         return view('articles.show', compact('article'));
     }
 
