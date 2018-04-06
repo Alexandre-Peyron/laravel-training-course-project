@@ -70,9 +70,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -82,9 +82,16 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'title' => 'bail|required|unique:articles|max:50',
+            'content' => 'required|max:250'
+        ]);
+
+        $article->update($request->all());
+
+        return redirect()->route('articles.show', $article->id);
     }
 
     /**
