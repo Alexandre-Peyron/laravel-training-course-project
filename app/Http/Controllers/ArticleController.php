@@ -28,7 +28,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -39,7 +39,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'bail|required|unique:articles|max:50',
+            'content' => 'required|max:250'
+        ]);
+
+        $article = Article::create($request->all());
+
+        return redirect()->route('articles.show', $article->id);
     }
 
     /**
