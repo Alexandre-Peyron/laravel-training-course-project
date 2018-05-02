@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('articles', 'ArticleController');
+Route::resource('comments', 'CommentController');

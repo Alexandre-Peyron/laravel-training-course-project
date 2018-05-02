@@ -44,5 +44,27 @@
                 </div>
             </article>
         @endforeach
+
+        <div class="col-12">
+            <div class="widget-area no-padding blank">
+                <form action="{{ route('comments.store') }}" method="POST">
+                    {{ csrf_field() }}
+
+                    <div class="form-group">
+                        <label form="title">Titre</label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label form="content">Commentaire</label>
+                        <textarea name="content" class="form-control" placeholder="Votre commentaire" ></textarea>
+                    </div>
+
+                    <input type="hidden" name="article_id" value="{{ $article->id }}">
+
+                    <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Commenter</button>
+                </form>
+            </div>
+        </div>
+
     </div>
 @endsection
