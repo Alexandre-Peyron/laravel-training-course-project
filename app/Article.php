@@ -12,4 +12,12 @@ class Article extends Model
      * @var array
      */
     protected $fillable = ['title', 'content', 'is_enabled'];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
