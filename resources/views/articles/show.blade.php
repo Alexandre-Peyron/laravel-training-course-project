@@ -32,7 +32,7 @@
                                 <div class="comment-title">
                                     {{ $comment->title }}
                                 </div>
-                                <strong>{{ $comment->created_at->diffForHumans()  }}</strong>
+                                <strong>{{ ucfirst($comment->created_at->diffForHumans())  }}</strong>
                             </header>
                             <div class="comment-post">
                                 <p>
