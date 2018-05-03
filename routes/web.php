@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 Route::resource('articles', 'ArticleController');
 Route::resource('comments', 'CommentController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

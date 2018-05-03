@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="col-md-8">
@@ -50,13 +50,24 @@
                 <form action="{{ route('comments.store') }}" method="POST">
                     {{ csrf_field() }}
 
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Oups !</strong> Ajout impossible !<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <div class="form-group">
                         <label form="title">Titre</label>
-                        <input type="text" class="form-control" name="title">
+                        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                     </div>
                     <div class="form-group">
                         <label form="content">Commentaire</label>
-                        <textarea name="content" class="form-control" placeholder="Votre commentaire" ></textarea>
+                        <textarea name="content" class="form-control" placeholder="Votre commentaire" >{{ old('content') }}</textarea>
                     </div>
 
                     <input type="hidden" name="article_id" value="{{ $article->id }}">
