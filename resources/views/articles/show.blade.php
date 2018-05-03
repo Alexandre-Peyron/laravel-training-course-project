@@ -46,36 +46,39 @@
         @endforeach
 
         <div class="col-12">
-            <div class="widget-area no-padding blank">
-                <form action="{{ route('comments.store') }}" method="POST">
-                    {{ csrf_field() }}
+            @guest
+                <a class="nav-link" href="{{ route('login') }}">Connectez vous pour commenter</a>
+            @else
+                <div class="widget-area no-padding blank">
+                    <form action="{{ route('comments.store') }}" method="POST">
+                        {{ csrf_field() }}
 
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Oups !</strong> Ajout impossible !<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <strong>Oups !</strong> Ajout impossible !<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <div class="form-group">
+                            <label form="title">Titre</label>
+                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                         </div>
-                    @endif
+                        <div class="form-group">
+                            <label form="content">Commentaire</label>
+                            <textarea name="content" class="form-control" placeholder="Votre commentaire" >{{ old('content') }}</textarea>
+                        </div>
 
-                    <div class="form-group">
-                        <label form="title">Titre</label>
-                        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
-                    </div>
-                    <div class="form-group">
-                        <label form="content">Commentaire</label>
-                        <textarea name="content" class="form-control" placeholder="Votre commentaire" >{{ old('content') }}</textarea>
-                    </div>
+                        <input type="hidden" name="article_id" value="{{ $article->id }}">
 
-                    <input type="hidden" name="article_id" value="{{ $article->id }}">
-
-                    <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Commenter</button>
-                </form>
-            </div>
+                        <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Commenter</button>
+                    </form>
+                </div>
+            @endguest
         </div>
-
     </div>
 @endsection

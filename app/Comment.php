@@ -11,7 +11,7 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'content', 'article_id'];
+    protected $fillable = ['title', 'content', 'article_id', 'user_id'];
 
     /**
      * Get the article that owns the comment.

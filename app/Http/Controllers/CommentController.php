@@ -20,7 +20,10 @@ class CommentController extends Controller
             'content' => 'required|max:250'
         ]);
 
-        $comment = Comment::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = \Auth::user()->id;
+
+        $comment = Comment::create($data );
 
         return redirect()->route('articles.show', $comment->article->id);
     }
