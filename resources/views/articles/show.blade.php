@@ -22,7 +22,7 @@
                 <div class="col-md-2 col-sm-2 hidden-xs">
                     <figure class="thumbnail">
                         <img class="img-fluid user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                        <figcaption class="text-center">username</figcaption>
+                        <figcaption class="text-center">{{ $comment->user->name }}</figcaption>
                     </figure>
                 </div>
                 <div class="col-md-10 col-sm-10">
