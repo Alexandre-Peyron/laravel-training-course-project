@@ -30,14 +30,17 @@ class CommentsTableSeeder extends Seeder
             $createdAt = $createdAt->format('Y-m-d H:i:s');
 
             $articles = DB::table('articles')->get();
-
             $article = $articles[rand(0, count($articles) - 1)];
+
+            $users = DB::table('users')->get();
+            $user = $users[rand(0, count($users) - 1)];
 
             DB::table('comments')->insert([
                 'title'      => $title,
                 'content'    => $content,
                 'created_at' => $createdAt,
-                'article_id' => $article->id
+                'article_id' => $article->id,
+                'user_id'    => $user->id
             ]);
         }
     }
