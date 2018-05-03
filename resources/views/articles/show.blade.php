@@ -39,6 +39,17 @@
                                     {{ $comment->content }}
                                 </p>
                             </div>
+
+                            @auth
+                                @if( Auth::user()->id === $comment->user->id )
+                                    <form method="POST" action="{{ route('comments.destroy', ['id' => $comment->id]) }}">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <input type="submit" value="Supprimer mon commentaire">
+                                    </form>
+                                @endif
+                            @endauth
+
                         </div>
                     </div>
                 </div>

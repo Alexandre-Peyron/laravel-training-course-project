@@ -27,4 +27,22 @@ class CommentController extends Controller
 
         return redirect()->route('articles.show', $comment->article->id);
     }
+
+    /**
+     * @param Comment $comment
+     *
+     * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Comment $comment)
+    {
+        $articleId = $comment->article->id;
+
+        if ($comment->user->id == \Auth::user()->id) {
+            $comment->delete();
+        }
+
+        return redirect()->route('articles.show', $articleId);
+    }
 }
